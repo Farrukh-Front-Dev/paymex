@@ -1,0 +1,172 @@
+/* ============================================
+   HEADER
+   Top sticky header with logo, badge, and back button
+   ============================================ */
+
+.top-header {
+    width: 100%;
+    padding: calc(var(--space-5) + env(safe-area-inset-top, 0px)) 0 var(--space-2);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    /* Qizil background - yorqin qizil */
+    background: linear-gradient(
+        180deg,
+        #dc2626 0%,
+        #b91c1c 50%,
+        #991b1b 100%
+    );
+    box-shadow: 
+        0 4px 16px rgba(220, 38, 38, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.top-header-inner {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--page-pad-inline);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    min-width: 0;
+    /* Ensure proper box-sizing */
+    box-sizing: border-box;
+    width: 100%;
+}
+
+@media (max-width: 360px) {
+    .top-header-inner {
+        gap: var(--space-3);
+    }
+}
+
+@media (max-width: 340px) {
+    .top-header-inner {
+        gap: var(--space-2);
+    }
+}
+
+/* ============================================
+   BACK BUTTON
+   ============================================ */
+
+.header-back-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--accent-color);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.header-back-btn:not([hidden]) {
+    display: flex;
+}
+
+.header-back-btn:hover {
+    background: var(--accent-soft);
+    color: var(--text-main);
+}
+
+.header-back-btn:active {
+    background: rgba(11, 115, 95, 0.4);
+}
+
+.header-back-icon {
+    font-size: var(--text-display-sm);
+    line-height: 1;
+    font-weight: 300;
+}
+
+/* ============================================
+   BRAND (LOGO + NAME)
+   ============================================ */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0;
+    flex-shrink: 1;
+}
+
+.brand-logo {
+    height: 32px;
+    width: 32px;
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.brand-name {
+    font-weight: 600;
+    font-size: var(--text-title);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+@media (max-width: 360px) {
+    .brand {
+        gap: var(--space-2);
+    }
+    .brand-logo {
+        height: 28px;
+        width: 28px;
+    }
+}
+
+@media (max-width: 340px) {
+    .brand-logo {
+        height: 26px;
+        width: 26px;
+    }
+    .brand-name {
+        font-size: 15px;
+    }
+}
+
+/* ============================================
+   TOP BADGE (STATUS BADGE)
+   ============================================ */
+
+.top-badge {
+    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 1;
+    max-width: min(52vw, 200px);
+    min-width: 0;
+    text-align: center;
+    line-height: 1.25;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 360px) {
+    .top-badge {
+        font-size: 10px;
+        padding: var(--space-1) var(--space-3);
+        max-width: 46vw;
+    }
+}
+
+@media (max-width: 340px) {
+    .top-badge {
+        font-size: 9px;
+        padding: 3px 8px;
+        max-width: 42vw;
+    }
+}

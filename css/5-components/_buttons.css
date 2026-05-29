@@ -1,0 +1,372 @@
+/* ============================================
+   BUTTONS
+   All button components and variants
+   ============================================ */
+
+/* ============================================
+   MAIN BUTTON (PRIMARY)
+   ============================================ */
+
+.main-button {
+    width: 100%;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: none;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-color));
+    color: #ffffff;
+    font-size: var(--text-body);
+    font-weight: 600;
+    margin-top: var(--space-6);
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.main-button.disabled {
+    pointer-events: none;
+}
+
+.main-button:not(.disabled):not(.support-btn) {
+    cursor: pointer;
+    opacity: 1;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-color));
+}
+
+.main-button:not(.disabled):not(.support-btn):hover {
+    background: linear-gradient(90deg, #095a4a, #095a4a);
+}
+
+.main-button:not(.disabled):not(.support-btn):active {
+    opacity: 0.95;
+}
+
+.main-button.support-btn {
+    cursor: pointer;
+    opacity: 1;
+}
+
+/* ============================================
+   EXCHANGE BUTTON (SPECIAL 3D EFFECT)
+   Кнопка «Обменять» — 3D эффект парения
+   ============================================ */
+
+#exchange-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 46px;
+    min-height: 46px;
+    padding: 0 var(--space-5);
+    box-sizing: border-box;
+    opacity: 1;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    transform: none;
+    box-shadow: none;
+    animation: none !important;
+    transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+#exchange-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--border-strong);
+    transform: none;
+    box-shadow: none;
+}
+
+#exchange-btn:active {
+    transform: none;
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: none;
+}
+
+#exchange-btn .exchange-btn-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#exchange-btn .exchange-btn-border rect {
+    stroke: transparent;
+}
+
+#exchange-btn .exchange-btn-text {
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+    font-size: var(--text-body);
+    letter-spacing: normal;
+    text-transform: none;
+    color: #ffffff;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: #ffffff;
+    background-clip: unset;
+}
+
+#exchange-btn.disabled {
+    opacity: 1;
+    cursor: not-allowed;
+    pointer-events: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    color: #ffffff;
+}
+
+/* Exchange card specific button styles */
+.exchange-card .main-button {
+    margin-top: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+}
+
+/* ============================================
+   SECONDARY BUTTON (GHOST)
+   ============================================ */
+
+.secondary-button {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-strong);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-sub);
+    line-height: var(--line-height-tight);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.secondary-button:hover {
+    border-color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Services grid button overrides */
+.services-grid .secondary-button,
+.services-grid .feature-card-buttons .secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    padding: 0 12px;
+    border-radius: 14px;
+    font-size: var(--text-sub);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+.services-grid button.secondary-button[data-service='referral'] {
+    font-size: var(--text-xs);
+    padding: 0 8px;
+}
+
+@media (max-width: 360px) {
+    .services-grid .secondary-button,
+    .services-grid .feature-card-buttons .secondary-button {
+        font-size: var(--text-xs);
+        padding: 0 10px;
+        height: 38px;
+        min-height: 38px;
+        max-height: 38px;
+    }
+    
+    .services-grid button.secondary-button[data-service='referral'] {
+        font-size: 10px;
+        padding: 0 6px;
+    }
+}
+
+@media (max-width: 340px) {
+    .services-grid .secondary-button,
+    .services-grid .feature-card-buttons .secondary-button {
+        font-size: 10px;
+        padding: 0 8px;
+        height: 36px;
+        min-height: 36px;
+        max-height: 36px;
+    }
+    
+    .services-grid button.secondary-button[data-service='referral'] {
+        font-size: 9px;
+        padding: 0 5px;
+    }
+}
+
+/* Feature card button layouts */
+.feature-card-buttons .secondary-button {
+    flex: 1;
+    min-width: 0;
+}
+
+.feature-card-buttons--stack .secondary-button {
+    flex: none;
+    width: 100%;
+}
+
+.feature-card--full-width-btn > .secondary-button {
+    display: block;
+    width: 100%;
+}
+
+.feature-card--swift > .secondary-button,
+.feature-card--swift > .feature-card-buttons {
+    margin-top: auto;
+}
+
+/* Office card actions */
+.office-card-actions .secondary-button {
+    width: 100%;
+}
+
+/* Modal actions */
+.modal-actions .secondary-button,
+.modal-actions .main-button {
+    flex: 1;
+}
+
+.modal-actions-two .main-button,
+.modal-actions-two .secondary-button {
+    font-size: var(--text-body);
+    font-weight: 600;
+}
+
+/* ============================================
+   SWAP BUTTON (EXCHANGE CARD)
+   ============================================ */
+
+.exchange-card .swap-divider .swap-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-input);
+    color: var(--text-secondary);
+    font-size: var(--text-title-sm);
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.exchange-card .swap-divider .swap-button:hover {
+    background: var(--surface-pill);
+    border-color: var(--text-secondary);
+    color: var(--text-main);
+}
+
+.exchange-card .swap-divider .swap-button:active {
+    transform: translateY(-50%) scale(0.98);
+}
+
+.exchange-card .swap-divider .swap-button:focus-visible {
+    outline: none;
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.45),
+        0 0 0 3px rgba(11, 115, 95, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.swap-divider .swap-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+/* ============================================
+   APPLE BUTTON
+   ============================================ */
+
+.apple-button {
+    display: block;
+    width: 100%;
+    padding: var(--space-5);
+    border-radius: var(--radius-pill);
+    border: none;
+    background: #ffffff;
+    color: #000000;
+    font-size: var(--text-body);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ============================================
+   CHAT SEND BUTTON
+   ============================================ */
+
+.chat-send {
+    width: var(--layout-hit-target);
+    height: var(--layout-hit-target);
+    border: none;
+    border-radius: 50%;
+    background: var(--accent-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.chat-send-icon {
+    font-size: var(--text-title);
+    font-weight: 600;
+}
+
+/* ============================================
+   CONTEXT-SPECIFIC BUTTON OVERRIDES
+   ============================================ */
+
+/* Algorithm footer */
+.algorithm-footer .main-button {
+    margin-top: 0;
+}
+
+/* Modal QR transfers */
+.modal-qr-transfers .modal-actions .main-button {
+    margin-top: 0;
+    box-shadow: none;
+}
+
+/* Uni orders search */
+.uni-orders-search-row .main-button {
+    margin-top: 0;
+    width: auto;
+}
+
+@media (max-width: 360px) {
+    .uni-orders-search-row .main-button {
+        width: 100%;
+    }
+}
+
+/* Uni tab order details */
+.uni-tab--order-details > .secondary-button {
+    width: fit-content;
+}

@@ -1,0 +1,465 @@
+/* ============================================
+   CARDS
+   All card components and variants
+   ============================================ */
+
+/* ============================================
+   BASE CARD
+   ============================================ */
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    padding: var(--space-8) var(--space-8) var(--space-7);
+    margin-bottom: var(--layout-section-gap);
+    border: 1px solid var(--border-subtle);
+    box-shadow: none;
+}
+
+/* ============================================
+   FEATURE CARD
+   ============================================ */
+
+.feature-card {
+    background: var(--card-elevated);
+    padding: var(--space-7);
+    border-radius: var(--radius-xl);
+    text-align: left;
+    border: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 360px) {
+    .feature-card {
+        padding: var(--space-6);
+    }
+}
+
+@media (max-width: 340px) {
+    .feature-card {
+        padding: var(--space-5);
+    }
+}
+
+/* Feature card variants */
+.feature-card--swift {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.feature-card--swift > .secondary-button,
+.feature-card--swift > .feature-card-buttons {
+    margin-top: auto;
+}
+
+.feature-card--full-width-btn > .secondary-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Feature card content */
+.feature-card h3 {
+    font-size: var(--text-sub);
+    /* Верх карточки: только padding карточки, без доп. margin — симметрично низу */
+    margin: 0 0 var(--home-icon-gap-block);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--home-icon-gap-inline);
+    line-height: var(--line-height-tight);
+}
+
+/* В карточках с кнопкой внизу не дублируем отступ под текстом — «воздух» даёт flex + margin-top: auto у кнопки */
+.feature-card--swift > p {
+    margin-bottom: 0;
+}
+
+.feature-card h3 .feature-icon-circle {
+    flex-shrink: 0;
+    align-self: center;
+    margin-top: 0;
+}
+
+.feature-card-title-text {
+    flex: 1;
+    min-width: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+@media (max-width: 420px) {
+    .feature-card h3 {
+        font-size: var(--text-sm);
+    }
+}
+
+.feature-card p {
+    font-size: var(--text-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-4);
+}
+
+/* Feature card buttons */
+.feature-card-buttons {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.feature-card-buttons .secondary-button {
+    flex: 1;
+    min-width: 0;
+}
+
+.feature-card-buttons--stack {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.feature-card-buttons--stack .secondary-button {
+    flex: none;
+    width: 100%;
+}
+
+/* ============================================
+   FEATURE ICONS
+   ============================================ */
+
+.feature-icon-row {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.service-pill {
+    width: 22px;
+    height: 22px;
+    border-radius: 8px;
+    background: #111119;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-sm);
+}
+
+.feature-icon-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 14px;
+    background: var(--surface-pill);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-body);
+}
+
+.feature-icon-circle svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+}
+
+.feature-icon-circle svg[fill]:not([fill='none']) {
+    fill: currentColor;
+    stroke: none;
+}
+
+/* AML (щит + лупа) выглядит плотнее других на 16px — оптическая коррекция */
+.feature-icon-circle .nav-icon--aml {
+    transform: translateY(0.25px) scale(1.06);
+    stroke-width: 1.7;
+}
+
+/* Section heading icon variant */
+.feature-icon-circle--section {
+    width: var(--section-heading-icon-size);
+    height: var(--section-heading-icon-size);
+    border-radius: calc(var(--section-heading-icon-size) / 2);
+    flex-shrink: 0;
+}
+
+.feature-icon-circle--section svg {
+    width: var(--section-heading-icon-inner);
+    height: var(--section-heading-icon-inner);
+}
+
+/* Home page glass card icon overrides */
+#page-home .feature-icon-circle--section {
+    position: relative;
+    isolation: isolate;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(247, 248, 248, 0.08);
+    color: rgba(90, 224, 168, 0.95);
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+#page-home .home-glass-card.list-card .list-icon {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(247, 248, 248, 0.08);
+}
+
+/* ============================================
+   APPLE PAY CARD
+   ============================================ */
+
+.apple-pay-card {
+    position: relative;
+    border-radius: var(--radius-card);
+    padding: var(--space-8) var(--space-8) var(--space-7);
+    margin-bottom: var(--space-7);
+    overflow: hidden;
+    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.09) 0%, rgba(21, 21, 27, 0.95) 45%, #05030a 100%);
+    box-shadow:
+        0 24px 40px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.apple-glow {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    height: 140px;
+    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.22) 0%, transparent 65%);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.apple-content {
+    position: relative;
+}
+
+.apple-logo-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-3);
+}
+
+.apple-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2) var(--space-7);
+    border-radius: var(--radius-pill);
+    background: rgba(0, 0, 0, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: var(--text-title-sm);
+    font-weight: 500;
+}
+
+.apple-logo-img {
+    height: 28px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.apple-pay-card h2 {
+    font-size: var(--text-title-sm);
+    text-align: center;
+    margin: var(--space-3) 0 var(--space-2);
+}
+
+.apple-pay-card p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-align: center;
+    margin: 0 0 var(--space-5);
+}
+
+.apple-note {
+    margin-top: var(--space-3);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* ============================================
+   DEPOSITS TEASER CARD
+   ============================================ */
+
+.deposits-teaser {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-7);
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius-xl);
+}
+
+.deposits-teaser-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.deposits-teaser-text {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-main);
+}
+
+.deposits-teaser-btn {
+    width: 100%;
+}
+
+/* ============================================
+   ABOUT TEXT CARD
+   ============================================ */
+
+.about-text {
+    padding: var(--space-7);
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius-xl);
+}
+
+.about-text p {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-sm);
+    line-height: var(--line-height-relaxed);
+}
+
+.about-inline-icon {
+    display: inline-flex;
+    vertical-align: -2px;
+    margin-right: var(--home-icon-gap-inline);
+}
+
+/* ============================================
+   LIST CARD
+   ============================================ */
+
+.list-card {
+    background: var(--card-elevated);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+}
+
+.list-card--green {
+    border: 1px solid var(--accent-color);
+    box-shadow: 0 0 12px var(--accent-soft);
+}
+
+#page-home .list-card.feature-card--green {
+    border: 1px solid var(--paymex-border-card, rgba(255, 255, 255, 0.18));
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+}
+
+/* ============================================
+   LIST ITEMS
+   ============================================ */
+
+.list-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--home-icon-gap-inline);
+    padding: var(--space-4) var(--space-5);
+    background: transparent;
+    border: none;
+    color: inherit;
+    text-align: left;
+}
+
+.list-item + .list-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.list-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background: #111119;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-body);
+}
+
+.list-icon--svg {
+    padding: 0;
+    overflow: hidden;
+}
+
+.list-icon--svg svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+}
+
+.list-text {
+    flex: 1;
+}
+
+.list-title {
+    font-size: var(--text-sub);
+    margin-bottom: 2px;
+}
+
+.list-subtitle {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+}
+
+.chevron {
+    font-size: var(--text-title);
+    color: var(--accent-color);
+}
+
+/* ============================================
+   SECTION LISTS
+   ============================================ */
+
+.section-list {
+    margin-bottom: var(--layout-section-gap);
+}
+
+.section-title {
+    margin: 0 0 var(--section-heading-margin-bottom);
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.section-title--with-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--section-heading-gap);
+}
+
+.section-title-text {
+    flex: 1;
+    min-width: 0;
+    font-size: var(--text-body-lg);
+    line-height: var(--line-height-tight);
+    letter-spacing: 0.01em;
+}
+
+/* ============================================
+   MAP SECTION
+   ============================================ */
+
+.map-section {
+    margin-bottom: var(--space-7);
+}
+
+.map-section .list-card {
+    margin-bottom: var(--space-4);
+}

@@ -1,0 +1,103 @@
+/* ============================================
+   GRID SYSTEMS
+   Services grid, home hub rows, and other grid layouts
+   ============================================ */
+
+/* ============================================
+   SERVICES GRID
+   ============================================ */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--layout-card-gap);
+    margin-bottom: var(--layout-section-gap);
+    align-items: stretch;
+}
+
+@media (max-width: 380px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 340px) {
+    .services-grid {
+        gap: var(--space-4);
+    }
+}
+
+.services-grid > .feature-card {
+    height: 100%;
+    min-height: 0;
+}
+
+/* ============================================
+   HOME HUB RATES GRID
+   ============================================ */
+
+.home-hub-rates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+/* ============================================
+   HOME HUB ROW (TILES GRID)
+   ============================================ */
+
+.home-hub-row {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.home-hub-row--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.home-hub-row--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 340px) {
+    .home-hub-row--3 {
+        gap: var(--space-3);
+    }
+    .home-hub-row--2 {
+        gap: var(--space-3);
+    }
+}
+
+.home-hub-row--apple-feature {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.58fr);
+    align-items: stretch;
+}
+
+/* Средний ряд плиток чуть выше квадрата — как на макете */
+.home-hub-row--tall-tiles .home-hub-tile {
+    aspect-ratio: 1 / 1.08;
+}
+
+@media (max-width: 360px) {
+    .home-hub-row--apple-feature {
+        grid-template-columns: 1fr;
+    }
+
+    .home-hub-tile--apple {
+        aspect-ratio: unset;
+        min-height: 100px;
+    }
+
+    .home-hub-featured {
+        flex-direction: column;
+        align-items: stretch;
+        min-height: 0;
+    }
+
+    .home-hub-featured__accent-icon {
+        align-self: flex-end;
+        width: 64px;
+        height: 64px;
+        margin-top: var(--space-2);
+    }
+}

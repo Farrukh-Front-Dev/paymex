@@ -1,0 +1,344 @@
+/* ============================================================================
+   DIAGNOSTICS PAGE COMPONENT
+   Diagnostics and testing page with service cards, tables, and logs
+   ========================================================================= */
+
+/* Diagnostics Page Layout
+   ========================================================================= */
+
+.diagnostics-page {
+    min-height: 100vh;
+    padding: var(--space-6) var(--space-5) calc(var(--space-8) + env(safe-area-inset-bottom, 0));
+    background: var(--bg-deep, #0a0812);
+    color: var(--text-main, #f4f4f5);
+    box-sizing: border-box;
+}
+
+.diagnostics-page__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-5);
+    margin-bottom: var(--space-6);
+}
+
+.diagnostics-page__title {
+    margin: 0 0 var(--space-3);
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.diagnostics-page__hint {
+    margin: 0;
+    max-width: 52rem;
+    font-size: var(--text-sm, 0.85rem);
+    color: var(--text-muted, #a1a1aa);
+    line-height: 1.5;
+}
+
+.diagnostics-code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.8em;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+}
+
+.diagnostics-page__close {
+    flex-shrink: 0;
+}
+
+.diagnostics-page__warn {
+    padding: var(--space-4);
+    border-radius: var(--space-3);
+    background: rgba(240, 173, 78, 0.12);
+    border: 1px solid rgba(240, 173, 78, 0.35);
+    color: #f0ad4e;
+    font-size: var(--text-sm, 0.9rem);
+    margin: 0 0 var(--space-5);
+}
+
+/* Diagnostics Toolbar
+   ========================================================================= */
+
+.diagnostics-page__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-5);
+    margin-bottom: var(--space-5);
+}
+
+.diagnostics-page__toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm, 0.9rem);
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.diagnostics-page__toggle--inline {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+/* Diagnostics Grid
+   ========================================================================= */
+
+.diagnostics-page__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+}
+
+@media (min-width: 900px) {
+    .diagnostics-page__grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+}
+
+.diagnostics-page__h2 {
+    margin: 0 0 var(--space-4);
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+/* Service Cards
+   ========================================================================= */
+
+.diagnostics-page__service-card {
+    margin-bottom: var(--space-7);
+    padding: var(--space-5) var(--space-5) var(--space-6);
+    border-radius: var(--space-3);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.diagnostics-page__service-card:last-child {
+    margin-bottom: 0;
+}
+
+.diagnostics-page__service-card-head {
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.diagnostics-page__service-title {
+    margin: 0 0 var(--space-2);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.diagnostics-page__service-hint {
+    margin: 0;
+    font-size: var(--text-sm, 0.85rem);
+    color: var(--text-muted, #a1a1aa);
+    line-height: 1.5;
+}
+
+/* Subsections
+   ========================================================================= */
+
+.diagnostics-page__subsection {
+    margin-bottom: var(--space-6);
+}
+
+.diagnostics-page__subsection:last-of-type {
+    margin-bottom: var(--space-5);
+}
+
+.diagnostics-page__h4 {
+    margin: 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-main, #e4e4e7);
+}
+
+.diagnostics-page__subsection-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.diagnostics-page__subsection-run {
+    font-size: 0.8rem;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--space-2);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    color: inherit;
+    cursor: pointer;
+}
+
+.diagnostics-page__subsection-run:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.diagnostics-page__subsection-empty {
+    margin: 0;
+    font-size: var(--text-sm, 0.85rem);
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Live Logs
+   ========================================================================= */
+
+.diagnostics-page__live-logs {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.diagnostics-page__live-logs-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.diagnostics-page__sky-note {
+    margin: var(--space-4) 0 0;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm, 0.85rem);
+    color: var(--text-muted);
+    line-height: 1.45;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--space-2);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+.diagnostics-page__logs-hint {
+    margin: calc(-1 * var(--space-2)) 0 var(--space-4);
+    font-size: var(--text-sm, 0.85rem);
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+/* Diagnostics Table
+   ========================================================================= */
+
+.diagnostics-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm, 0.88rem);
+}
+
+.diagnostics-table th,
+.diagnostics-table td {
+    text-align: left;
+    padding: var(--space-3) var(--space-2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    vertical-align: top;
+}
+
+.diagnostics-table th {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.diagnostics-table__row--muted {
+    opacity: 0.55;
+}
+
+.diagnostics-table__name {
+    font-weight: 500;
+}
+
+.diagnostics-table__desc {
+    margin-top: var(--space-2);
+    color: var(--text-muted);
+    font-size: 0.85em;
+    line-height: 1.4;
+}
+
+.diagnostics-table__detail {
+    margin-top: var(--space-2);
+    font-family: ui-monospace, monospace;
+    font-size: 0.78em;
+    color: #c4b5fd;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+.diagnostics-table__run {
+    font-size: 0.85rem;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--space-2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    color: inherit;
+    cursor: pointer;
+}
+
+.diagnostics-table__run:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Diagnostics Badges
+   ========================================================================= */
+
+.diagnostics-badge {
+    display: inline-block;
+    min-width: 2.5rem;
+    text-align: center;
+    padding: 0.15em 0.5em;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.diagnostics-badge--idle {
+    color: var(--text-muted);
+}
+
+.diagnostics-badge--run {
+    color: #7dd3fc;
+}
+
+.diagnostics-badge--ok {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+}
+
+.diagnostics-badge--fail {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+}
+
+/* Diagnostics Pre/Code Blocks
+   ========================================================================= */
+
+.diagnostics-pre {
+    margin: 0 0 var(--space-6);
+    padding: var(--space-4);
+    max-height: 280px;
+    overflow: auto;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--space-3);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.diagnostics-pre--server {
+    max-height: 360px;
+}
+
+.diagnostics-pre--uniuni {
+    max-height: 360px;
+}

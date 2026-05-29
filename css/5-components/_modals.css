@@ -1,0 +1,842 @@
+/* ============================================
+   MODALS
+   Modal overlays, dialogs, and forms
+   ============================================ */
+
+/* ============================================
+   MODAL OVERLAY SYSTEM
+   ============================================ */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--layout-overlay-padding);
+    box-sizing: border-box;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 31, 26, 0.88);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+}
+
+.modal-box {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    max-height: 85vh;
+    /* Glass effect - dark green */
+    background: linear-gradient(
+        180deg,
+        rgba(15, 47, 40, 0.95) 0%,
+        rgba(13, 40, 34, 0.95) 50%,
+        rgba(11, 35, 30, 0.95) 100%
+    );
+    border-radius: 20px;
+    border: 1px solid rgba(45, 85, 72, 0.3);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    /* Glass blur effect */
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    /* Ensure proper box-sizing */
+    box-sizing: border-box;
+}
+
+/* Limit modal width on larger screens */
+@media (min-width: 481px) {
+    .modal-box {
+        max-width: var(--layout-content-max);
+    }
+}
+
+/* ============================================
+   MODAL HEADER
+   ============================================ */
+
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-5);
+    padding: var(--space-7) var(--space-8);
+    border-bottom: 1px solid rgba(45, 85, 72, 0.2);
+    flex-shrink: 0;
+    /* Slightly lighter top section */
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.02) 0%,
+        transparent 100%
+    );
+}
+
+.modal-title {
+    margin: 0;
+    font-size: var(--text-title-sm);
+    font-weight: 600;
+    line-height: var(--line-height-snug);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.modal-title-icon svg {
+    width: 18px;
+    height: 18px;
+    color: currentColor;
+}
+
+.modal-close {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(45, 85, 72, 0.3);
+    color: var(--text-main);
+    font-size: var(--text-display-sm);
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.modal-close:hover {
+    background: rgba(45, 85, 72, 0.5);
+}
+
+.modal-close-icon {
+    display: block;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+}
+
+/* ============================================
+   MODAL BODY
+   ============================================ */
+
+.modal-body {
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1 1 auto;
+    min-height: 0;
+    font-size: var(--text-sub);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    -webkit-overflow-scrolling: touch;
+}
+
+.modal-surface {
+    margin: var(--space-7) var(--space-8) var(--layout-modal-body-end);
+    padding: var(--space-7);
+    border-radius: 16px;
+    /* Darker glass surface inside modal */
+    background: rgba(10, 31, 26, 0.4);
+    border: 1px solid rgba(45, 85, 72, 0.2);
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.modal-body p {
+    margin: 0 0 var(--space-5);
+}
+
+.modal-body p:last-child {
+    margin-bottom: 0;
+}
+
+.modal-body a {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.modal-body a:hover {
+    color: #0d9a7d;
+}
+
+.modal-body-link {
+    margin-top: var(--space-3) !important;
+}
+
+.modal-body-note {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.modal-body-checkbox {
+    margin: var(--space-3) 0 var(--space-1) !important;
+}
+
+.modal-body-checkbox label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-size: var(--text-sub);
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.modal-body-checkbox input[type="checkbox"] {
+    margin: 0;
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent-color);
+}
+
+/* Global input styles are optimized for amount inputs; keep checkboxes compact everywhere */
+input[type="checkbox"] {
+    flex: 0 0 auto;
+    margin: 0;
+}
+
+/* ============================================
+   MODAL FORMS
+   Модальные формы
+   ============================================ */
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+/* Модалка «Открытие зарубежных карт» — форма как в списке */
+.modal-form-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.form-list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding: var(--space-7) var(--space-6);
+}
+
+.form-list-row + .form-list-row {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.form-list-label {
+    font-size: var(--text-body);
+    font-weight: 500;
+    color: var(--text-main);
+    white-space: nowrap;
+}
+
+.form-list-input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--text-body);
+    line-height: var(--line-height-normal);
+    color: var(--text-main);
+    text-align: right;
+}
+
+.form-list-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.form-list-input:focus {
+    outline: none;
+}
+
+.modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.modal-field[hidden] {
+    display: none !important;
+}
+
+.modal-label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.modal-input,
+.modal-textarea {
+    width: 100%;
+    padding: var(--space-5) var(--space-6);
+    font-size: var(--text-body);
+    line-height: var(--line-height-normal);
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.modal-input::placeholder,
+.modal-textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.modal-input:focus,
+.modal-textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Выпадающий список в модалках — в стиле проекта */
+.modal-select {
+    padding-right: 40px;
+    cursor: pointer;
+    color-scheme: dark;
+    background-color: #0a2a1f;
+    border: 1px solid rgba(75, 227, 155, 0.2);
+    border-radius: 14px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.modal-select:focus,
+.modal-select:active {
+    background-color: #0c3325 !important;
+    border-color: rgba(75, 227, 155, 0.45) !important;
+    box-shadow: 0 0 12px rgba(75, 227, 155, 0.15) !important;
+    outline: none !important;
+}
+
+.modal-select option {
+    background-color: #0a1f18;
+    color: #ffffff;
+    padding: 12px 16px;
+}
+
+.modal-select option:checked {
+    background-color: #0b735f;
+    color: #ffffff;
+}
+
+.modal-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.modal-file {
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--text-sub);
+    color: var(--text-secondary);
+}
+
+.modal-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+}
+
+@media (max-width: 360px) {
+    .modal-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   MODAL ACTIONS
+   ============================================ */
+
+.modal-actions {
+    display: flex;
+    gap: var(--space-5);
+    margin-top: var(--space-7);
+    padding-top: var(--space-7);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.modal-actions .secondary-button,
+.modal-actions .main-button {
+    flex: 1;
+}
+
+.modal-actions-two {
+    flex-direction: column;
+}
+
+.modal-actions-two .main-button,
+.modal-actions-two .secondary-button {
+    font-size: var(--text-body);
+    font-weight: 600;
+    min-height: 48px;
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+}
+
+.modal-actions-sticky {
+    position: sticky;
+    bottom: 0;
+    background: var(--card-elevated);
+    padding: var(--space-5) var(--space-8);
+    padding-bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin: 0;
+}
+
+/* ============================================
+   ORDER DETAIL MODAL
+   ============================================ */
+
+.modal-order-detail-box {
+    max-width: 420px;
+}
+
+.order-detail-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.order-detail-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+}
+
+/* ============================================
+   QR TRANSFERS MODAL
+   ============================================ */
+
+.modal-qr-transfers-box {
+    max-width: 456px;
+    /* Enhanced glassmorphism for QR modal */
+    background: linear-gradient(
+        180deg,
+        rgba(15, 47, 40, 0.75) 0%,
+        rgba(13, 40, 34, 0.8) 50%,
+        rgba(11, 35, 30, 0.85) 100%
+    ) !important;
+    backdrop-filter: blur(32px) saturate(1.8) !important;
+    -webkit-backdrop-filter: blur(32px) saturate(1.8) !important;
+    border: 1px solid rgba(75, 227, 155, 0.15) !important;
+    box-shadow: 
+        0 24px 72px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(75, 227, 155, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+.modal-qr-transfers-body .modal-surface {
+    margin: var(--space-5) var(--space-6) var(--space-7);
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.modal-qr-transfers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.modal-qr-transfers__hero {
+    position: relative;
+    margin: 0;
+    padding: var(--space-7) var(--space-6);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modal-qr-transfers__hero .profile-welcome {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-title);
+}
+
+.modal-qr-transfers__hero .history-section-hint {
+    margin: 0;
+}
+
+.modal-qr-transfers .uni-page__body {
+    gap: var(--space-4);
+}
+
+.modal-qr-transfers .uni-tab {
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.modal-qr-transfers .uni-form-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.modal-qr-transfers .modal-actions-sticky {
+    margin: 0;
+    padding: var(--space-2) 0 calc(var(--space-2) + env(safe-area-inset-bottom, 0px));
+    background: transparent;
+    border: none;
+}
+
+.modal-qr-transfers .modal-actions {
+    margin-top: var(--space-4);
+    padding-top: 0;
+    border: none;
+}
+
+.modal-qr-transfers .modal-actions .main-button {
+    margin-top: 0;
+    box-shadow: none;
+}
+
+/* ============================================
+   REFERRAL MODAL
+   Реферальная программа (модалка)
+   ============================================ */
+
+.modal-referral-box .modal-body {
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.modal-referral-box .modal-title {
+    font-size: var(--text-headline);
+}
+
+.referral-hero {
+    margin-bottom: var(--space-9);
+    padding: var(--space-6) var(--space-7);
+    background: var(--accent-soft);
+    border-radius: 14px;
+    border-left: 3px solid var(--accent-color);
+}
+
+.referral-intro {
+    margin: 0;
+    color: var(--text-main);
+}
+
+/* ============================================
+   ALGORITHM MODAL
+   Алгоритм действий (модалка)
+   ============================================ */
+
+.modal-algorithm-box .modal-body {
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.algorithm-body {
+    padding-bottom: var(--space-3);
+}
+
+.algorithm-direction {
+    margin-bottom: var(--space-10);
+}
+
+.algorithm-direction:last-of-type {
+    margin-bottom: var(--space-8);
+}
+
+.algorithm-direction-title {
+    margin: 0 0 var(--space-5);
+    font-size: var(--text-title-sm);
+    font-weight: 700;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.algorithm-title-icon svg {
+    width: 18px;
+    height: 18px;
+    color: currentColor;
+}
+
+.algorithm-inline-icon {
+    display: inline-flex;
+    vertical-align: -2px;
+}
+
+/* ============================================
+   OFFICE CARD MODAL
+   Офис (модалка "Москва, Пресненская наб....")
+   ============================================ */
+
+.office-card-status {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-sub);
+    color: var(--text-secondary);
+}
+
+.office-card-status strong {
+    color: var(--text-main);
+}
+
+.office-card-address {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-body);
+    color: var(--text-main);
+    line-height: var(--line-height-relaxed);
+}
+
+.office-card-hours {
+    margin: 0 0 var(--space-6);
+    font-size: var(--text-sub);
+    color: var(--text-secondary);
+}
+
+.office-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.office-card-actions .secondary-button {
+    width: 100%;
+}
+
+.office-card-footer {
+    margin-top: var(--space-6);
+}
+
+/* ============================================
+   SKY WIDGET MODAL
+   ============================================ */
+
+.sky-widget {
+    gap: var(--space-5);
+}
+
+.sky-widget-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.sky-widget-subtitle {
+    margin: 0;
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.sky-widget-title {
+    margin: 0;
+    font-size: var(--text-title);
+    color: var(--text-main);
+}
+
+.sky-flow-switch {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+}
+
+.sky-flow-btn {
+    min-height: 44px;
+}
+
+.sky-flow-btn--active {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 1px rgba(11, 115, 95, 0.35) inset;
+    background: rgba(11, 115, 95, 0.2);
+}
+
+.sky-form-list {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.sky-actions {
+    margin-top: var(--space-2);
+}
+
+.sky-error {
+    margin: 0;
+    padding: var(--space-4) var(--space-5);
+    border-radius: 10px;
+    border: 1px solid rgba(244, 67, 54, 0.35);
+    background: rgba(244, 67, 54, 0.12);
+    color: #ff8f8f;
+    font-size: var(--text-sm);
+    line-height: var(--line-height-snug);
+}
+
+.sky-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+}
+
+.sky-meta-card {
+    padding: var(--space-4);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* ============================================
+   EMBED VIEWER
+   Встроенный просмотр внешнего сайта (Mini App)
+   ============================================ */
+
+.embed-viewer-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-color);
+}
+
+.embed-viewer-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    padding-top: max(var(--space-4), env(safe-area-inset-top, 0px));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: var(--card-elevated);
+}
+
+.embed-viewer-back {
+    flex-shrink: 0;
+    border: none;
+    border-radius: 10px;
+    padding: var(--space-3) var(--space-5);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+    font-size: var(--text-body);
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.embed-viewer-back:active {
+    opacity: 0.9;
+}
+
+.embed-viewer-title {
+    flex: 1;
+    min-width: 0;
+    font-size: var(--text-body-lg);
+    font-weight: 600;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.embed-viewer-external {
+    flex-shrink: 0;
+    border: none;
+    border-radius: 10px;
+    padding: var(--space-3) var(--space-4);
+    background: rgba(11, 115, 95, 0.25);
+    color: var(--accent-color);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    border: 1px solid rgba(11, 115, 95, 0.45);
+}
+
+.embed-viewer-external:active {
+    opacity: 0.9;
+}
+
+.embed-viewer-frame {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    border: 0;
+    background: #0c0c10;
+}
+
+/* ============================================
+   CONSENT FOOTER
+   Кнопка согласия на обработку ПД
+   ============================================ */
+
+.consent-footer {
+    padding: var(--space-7) 0 var(--space-10);
+    text-align: center;
+}
+
+.consent-link {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: var(--text-sub);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: var(--space-1) var(--space-3);
+}
+
+.consent-link:hover {
+    color: #0d9a7d;
+}
+
+/* Modal Footer Variants
+   ========================================================================= */
+
+.algorithm-footer {
+    margin: 0;
+    padding: var(--space-6) 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+}
+
+.algorithm-footer .main-button {
+    margin-top: 0;
+}

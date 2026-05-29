@@ -1,0 +1,153 @@
+/* ============================================
+   RESPONSIVE UTILITIES
+   Mobile-first responsive helpers and breakpoints
+   ============================================ */
+
+/* ============================================
+   VIEWPORT CONSTRAINTS
+   Ensure app stays centered and properly sized on all devices
+   ============================================ */
+
+/* Mobile-first: Full width on small screens */
+@media (max-width: 480px) {
+    #root,
+    .app-shell,
+    .app-pages,
+    .page,
+    .app-container {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    #root {
+        border-left: none !important;
+        border-right: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Tablet and larger: Constrain to max-width and center */
+@media (min-width: 481px) {
+    #root {
+        max-width: var(--layout-content-max);
+        margin: 0 auto;
+    }
+    
+    .app-shell {
+        max-width: var(--layout-content-max);
+    }
+}
+
+/* ============================================
+   SAFE AREA SUPPORT
+   iOS notch and home indicator support
+   ============================================ */
+
+/* Ensure content doesn't overlap with iOS safe areas */
+@supports (padding: env(safe-area-inset-top)) {
+    .top-header {
+        padding-top: calc(var(--space-5) + env(safe-area-inset-top, 0px));
+    }
+    
+    .bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+}
+
+/* ============================================
+   DEVICE-SPECIFIC OPTIMIZATIONS
+   ============================================ */
+
+/* iPhone SE and small devices (320px - 360px) */
+@media (max-width: 360px) {
+    :root {
+        /* Slightly reduce spacing on very small screens */
+        --page-pad-inline: 16px;
+    }
+}
+
+/* Extra small devices (< 340px) */
+@media (max-width: 340px) {
+    :root {
+        /* Further reduce spacing */
+        --page-pad-inline: 14px;
+        --space-7: 14px;
+        --space-8: 16px;
+    }
+}
+
+/* Standard mobile (360px - 414px) */
+@media (min-width: 361px) and (max-width: 414px) {
+    :root {
+        /* Optimal spacing for standard mobile */
+        --page-pad-inline: 20px;
+    }
+}
+
+/* Large mobile (415px - 480px) */
+@media (min-width: 415px) and (max-width: 480px) {
+    :root {
+        /* Comfortable spacing for large phones */
+        --page-pad-inline: 24px;
+    }
+}
+
+/* ============================================
+   ORIENTATION SUPPORT
+   ============================================ */
+
+/* Landscape mode on mobile */
+@media (max-width: 900px) and (orientation: landscape) {
+    .page {
+        /* Reduce vertical padding in landscape */
+        padding-top: var(--space-3);
+        padding-bottom: calc(var(--page-pad-bottom-base) + var(--space-3));
+    }
+    
+    .top-header {
+        /* Compact header in landscape */
+        padding-top: var(--space-2);
+        padding-bottom: var(--space-1);
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    :root {
+        --border-subtle: rgba(255, 255, 255, 0.2);
+        --border-strong: rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    .bottom-nav,
+    .top-header,
+    .page-loader {
+        display: none !important;
+    }
+    
+    .page {
+        padding: 0 !important;
+    }
+    
+    #root {
+        max-width: 100% !important;
+    }
+}

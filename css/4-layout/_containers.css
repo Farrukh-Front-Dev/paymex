@@ -1,0 +1,52 @@
+/* ============================================
+   CONTAINERS
+   Main app shell, pages wrapper, and page containers
+   ============================================ */
+
+.app-shell {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Mobile-first: full width, centered */
+    width: 100%;
+    position: relative;
+}
+
+.app-pages {
+    width: 100%;
+    max-width: 100%;
+    flex: 1;
+    /* Ensure content doesn't overflow */
+    overflow-x: hidden;
+}
+
+.page {
+    display: none;
+    width: 100%;
+    padding: var(--page-pad-block) var(--page-pad-inline) var(--page-pad-bottom);
+    /* Ensure proper box-sizing */
+    box-sizing: border-box;
+    /* Prevent content overflow */
+    overflow-x: hidden;
+}
+
+.page.active {
+    display: block;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 100%;
+    /* Ensure proper box-sizing */
+    box-sizing: border-box;
+}
+
+/* ============================================
+   PAGE-SPECIFIC VISIBILITY
+   ============================================ */
+
+#page-concierge:not(.active) {
+    display: none !important;
+}

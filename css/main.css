@@ -1,0 +1,66 @@
+/* ============================================================================
+   MAIN CSS - ITCSS Architecture
+   Paymex Telegram Mini App
+   ========================================================================= */
+
+/* 0. SETTINGS
+   Global variables, config switches
+   ========================================================================= */
+@import './0-settings/_variables.css';
+@import './0-settings/_fonts.css';
+
+/* 1. TOOLS
+   Mixins and functions (currently empty)
+   ========================================================================= */
+
+/* 2. GENERIC
+   Ground-zero styles (resets, box-sizing)
+   ========================================================================= */
+@import './2-generic/_reset.css';
+@import './2-generic/_base.css';
+
+/* 3. ELEMENTS
+   Unclassed HTML elements (currently empty)
+   ========================================================================= */
+
+/* 4. LAYOUT
+   Page structure and major layout components
+   ========================================================================= */
+@import './4-layout/_containers.css';
+@import './4-layout/_header.css';
+@import './4-layout/_navigation.css?v=paymex-curve-notch-fixed';
+@import './4-layout/_grid.css';
+
+/* 5. COMPONENTS
+   Designed UI components
+   ========================================================================= */
+@import './5-components/_buttons.css';
+@import './5-components/_cards.css';
+@import './5-components/_exchange-card.css';
+@import './5-components/_hub-tiles.css';
+@import './5-components/_rate-pills.css';
+@import './5-components/_modals.css';
+@import './5-components/_profile.css';
+@import './5-components/_history.css';
+@import './5-components/_chat.css';
+@import './5-components/_support.css';
+@import './5-components/_consent.css';
+@import './5-components/_map-button.css';
+@import './5-components/_embed-viewer.css';
+@import './5-components/_diagnostics.css';
+
+/* 6. PAGES
+   Page-specific styles
+   ========================================================================= */
+@import './6-pages/_home.css';
+
+/* 7. THEMES
+   Theme-specific overrides and variables
+   ========================================================================= */
+@import './7-themes/_paymex-theme-variables.css';
+@import './7-themes/_paymex-theme.css?v=paymex-curve-notch-fixed';
+
+/* 8. UTILITIES
+   Helper classes and overrides
+   ========================================================================= */
+@import './8-utilities/_responsive.css';

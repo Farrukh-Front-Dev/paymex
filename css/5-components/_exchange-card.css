@@ -1,0 +1,376 @@
+/* ============================================
+   EXCHANGE CARD
+   Currency exchange card component
+   ============================================ */
+
+/* ============================================
+   BASE EXCHANGE CARD
+   ============================================ */
+
+.exchange-card {
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-7);
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius-2xl);
+}
+
+@media (max-width: 360px) {
+    .exchange-card {
+        padding: var(--space-6);
+    }
+}
+
+@media (max-width: 340px) {
+    .exchange-card {
+        padding: var(--space-5);
+    }
+}
+
+.exchange-card.exchange-card--modal {
+    margin-bottom: 0;
+    box-shadow: none;
+}
+
+/* ============================================
+   LABELS AND HIGHLIGHTS
+   ============================================ */
+
+.exchange-card .label {
+    margin-bottom: var(--space-micro);
+    font-size: var(--text-sm);
+}
+
+.label {
+    color: var(--text-secondary);
+    font-size: var(--text-sub);
+    margin-bottom: var(--space-3);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+}
+
+.highlight {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.fee {
+    color: var(--success);
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-pill);
+    background: rgba(50, 215, 75, 0.12);
+}
+
+/* ============================================
+   INPUT GROUPS
+   ============================================ */
+
+.exchange-card .input-group {
+    position: relative;
+    z-index: 0;
+}
+
+/* Give room for the swap button so it doesn't overlap the first currency row. */
+.exchange-card .input-group:first-child {
+    padding-bottom: var(--space-5);
+}
+
+.exchange-card .input-group + .input-group {
+    margin-top: var(--space-2);
+}
+
+.input-group + .input-group {
+    margin-top: var(--space-4);
+}
+
+/* ============================================
+   INPUT ROWS
+   ============================================ */
+
+.exchange-card .input-row {
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0;
+}
+
+@media (max-width: 340px) {
+    .exchange-card .input-row {
+        gap: var(--space-2);
+    }
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-5);
+    min-width: 0;
+}
+
+@media (max-width: 360px) {
+    .input-row {
+        gap: var(--space-4);
+    }
+}
+
+@media (max-width: 340px) {
+    .input-row {
+        gap: var(--space-3);
+    }
+}
+
+/* ============================================
+   AMOUNT INPUTS
+   Amount inputs on the exchange card only (avoid leaking to checkboxes/modals)
+   ============================================ */
+
+.exchange-card input {
+    font-size: var(--text-metric);
+}
+
+.exchange-card .input-row > input[type="number"] {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: clamp(28px, 8vw, var(--text-hero));
+    font-weight: 600;
+    flex: 1;
+    min-width: 0;
+    outline: none;
+}
+
+.exchange-card .input-row > input[type="number"]::placeholder {
+    color: rgba(235, 235, 245, 0.3);
+}
+
+@media (max-width: 340px) {
+    .exchange-card .input-row > input[type="number"] {
+        font-size: clamp(24px, 7vw, 30px);
+    }
+}
+
+/* ============================================
+   CURRENCY SELECT
+   ============================================ */
+
+.exchange-card .currency-select {
+    padding: var(--space-micro) var(--space-8) var(--space-micro) var(--space-3);
+    min-width: 92px;
+    border-radius: var(--radius-md);
+    gap: 1px;
+    background: var(--surface-pill);
+    border: none;
+    box-shadow: none;
+}
+
+@media (max-width: 360px) {
+    .exchange-card .currency-select {
+        min-width: 80px;
+        padding: var(--space-micro) 24px var(--space-micro) var(--space-2);
+    }
+}
+
+@media (max-width: 340px) {
+    .exchange-card .currency-select {
+        min-width: 72px;
+        padding: 4px 22px 4px 6px;
+    }
+}
+
+.currency-select {
+    border: 1px solid transparent;
+    outline: none;
+    background: var(--surface-pill);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3) var(--space-5);
+    padding-right: 22px;
+    min-width: 110px;
+    font-size: var(--text-body);
+    line-height: var(--line-height-tight);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+@media (max-width: 360px) {
+    .currency-select {
+        min-width: 90px;
+        padding: var(--space-2) var(--space-4);
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 340px) {
+    .currency-select {
+        min-width: 80px;
+        padding: 6px 10px;
+        padding-right: 18px;
+    }
+}
+
+/* ============================================
+   CURRENCY TITLE AND SUBTITLE
+   ============================================ */
+
+.exchange-card .currency-title {
+    font-size: var(--text-body);
+}
+
+.exchange-card .currency-subtitle {
+    font-size: var(--text-2xs);
+}
+
+.currency-title {
+    font-size: var(--text-body);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.currency-subtitle {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+@media (max-width: 340px) {
+    .currency-title {
+        font-size: var(--text-sm);
+    }
+    .currency-subtitle {
+        font-size: 9px;
+    }
+}
+
+/* ============================================
+   ARROW (DROPDOWN INDICATOR)
+   ============================================ */
+
+.arrow {
+    position: absolute;
+    right: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--text-title-sm);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+@media (max-width: 340px) {
+    .arrow {
+        right: var(--space-3);
+        font-size: var(--text-body);
+    }
+}
+
+/* ============================================
+   SWAP DIVIDER
+   ============================================ */
+
+.exchange-card .swap-divider {
+    position: relative;
+    z-index: 1;
+    height: 1px;
+    /* Slightly bias down so the swap button is visually centered between rows. */
+    margin: calc(var(--space-6) + 4px) 0 var(--space-3);
+    background: none;
+}
+
+.exchange-card .swap-divider::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    transform: translateY(-0.5px);
+    background: linear-gradient(90deg, transparent 0%, var(--border-subtle) 50%, transparent 100%);
+}
+
+.swap-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(84, 84, 88, 0.6) 50%, transparent 100%);
+    margin: var(--space-7) 0 var(--space-6);
+    position: relative;
+}
+
+.swap-divider .swap-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #1d1d26;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(11, 115, 95, 0.4);
+    font-size: var(--text-title-sm);
+    color: var(--text-secondary);
+}
+
+/* Note: Swap button hover/active/focus states are in _buttons.css */
+
+/* ============================================
+   RATE INFO
+   ============================================ */
+
+.exchange-card .rate-info {
+    margin-top: 2px;
+    align-items: baseline;
+    font-size: var(--text-xs);
+}
+
+.rate-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-4);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+}
+
+.rate-hint {
+    color: var(--text-muted);
+}
+
+/* ============================================
+   EXCHANGE BUTTON
+   ============================================ */
+
+.exchange-card .main-button {
+    margin-top: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--text-body);
+    border-radius: var(--radius-md);
+}
+
+/* ============================================
+   EXCHANGE MIN WARNING
+   ============================================ */
+
+.exchange-min-warning {
+    margin-top: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(240, 173, 78, 0.35);
+    background: rgba(240, 173, 78, 0.08);
+    color: #f0ad4e;
+    font-size: var(--text-xs);
+    line-height: var(--line-height-snug);
+}

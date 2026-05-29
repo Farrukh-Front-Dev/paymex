@@ -1,0 +1,946 @@
+/* ============================================================================
+   PAYMEX THEME
+   Theme-specific overrides with gradients and visual effects
+   ========================================================================= */
+
+/* Background Layers (fixed, под #root)
+   ========================================================================= */
+
+body {
+    background: var(--paymex-bg-gradient) no-repeat center / cover !important;
+    background-attachment: fixed !important;
+}
+
+html::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: var(--paymex-noise-opacity);
+    background: var(--paymex-noise) repeat;
+    background-size: var(--paymex-noise-size) var(--paymex-noise-size);
+    mix-blend-mode: overlay;
+}
+
+#root {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Фон страницы только body::before; без нижнего glow (мешал таббару) */
+.app-fixed-bg {
+    background: transparent;
+}
+
+/* Global Card Overrides
+   ========================================================================= */
+
+.home-page .exchange-card.card.feature-card--green,
+.card.exchange-card.feature-card--green {
+    border: 1px solid var(--paymex-border-exchange) !important;
+    border-radius: var(--paymex-radius-exchange) !important;
+    background: var(--paymex-card-gradient-main) !important;
+    box-shadow: var(--paymex-card-shadow-main) !important;
+    backdrop-filter: blur(20px) saturate(1.4) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+}
+
+/* .feature-card в style.css идёт позже при @import — здесь двойной класс + !important */
+.feature-card.feature-card--green,
+.card.feature-card--green {
+    background: var(--paymex-card-gradient-feature) !important;
+    border: 1px solid var(--paymex-border-card) !important;
+    border-radius: var(--paymex-radius-feature) !important;
+    backdrop-filter: blur(20px) saturate(1.4) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+    box-shadow: var(--paymex-card-shadow-feature) !important;
+}
+
+.rate-pill {
+    background: var(--paymex-chip-gradient) !important;
+    border: 1px solid var(--paymex-border-chip) !important;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--paymex-chip-shadow) !important;
+}
+
+/* Navigation Theme
+   ========================================================================= */
+
+/* Navigation Theme
+   ========================================================================= */
+
+
+
+
+
+
+
+
+
+.bottom-nav {
+    background: transparent !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    isolation: isolate;
+}
+
+.bottom-nav__shell {
+    position: relative;
+    background: transparent !important;
+    border-top: none !important;
+    box-shadow: none !important;
+    backdrop-filter: blur(20px) saturate(1.4) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+    border-radius: 0px !important;
+}
+
+/* We want the SVG curve to provide the notch! */
+.bottom-nav__curve {
+    display: block !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    filter: drop-shadow(0px -3px 15px rgba(0, 0, 0, 0.5));
+
+}
+
+/* Shift the circular FAB button to sit perfectly INSIDE the SVG notch */
+/* The notch typically expects the button to be slightly raised. We must leave a gap! */
+.bottom-nav__fab {
+    /* Screenshot: FAB sits 50% above bar edge — notch radius 32px, FAB half = 29px */
+    top: calc(var(--bn-fab-edge-y, 2px) - 4px) !important;
+    margin-left: 0 !important;
+    z-index: 4 !important;
+}
+
+
+.bottom-nav__fab .nav-fab-bubble {
+    width: 58px !important;
+    height: 58px !important;
+    /* Clean rich forest green */
+    background: #143828 !important;
+    border: none !important;
+    color: #ffffff !important;
+    /* Deep soft drop shadow to make it float beautifully in the air above the notch gap */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+    filter: none !important;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease !important;
+}
+
+.bottom-nav__fab:hover .nav-fab-bubble {
+    transform: scale(1.05);
+    background: #1a4330 !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7) !important;
+}
+
+.bottom-nav__fab:active .nav-fab-bubble {
+    transform: scale(0.94);
+}
+
+.bottom-nav__fab.is-active .nav-fab-bubble {
+    background: #1d4e38 !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Tab Items - Modern Crisp White Inactive States and Premium Hover/Active Micro-interactions */
+.bottom-nav .nav-item {
+    color: #ffffff !important;
+    opacity: 0.9 !important;
+    /* Fully white and visible, not muted green/gray */
+    transition: opacity 0.25s ease, transform 0.25s ease !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom-nav .nav-item .nav-icon {
+    transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1), filter 0.25s ease !important;
+}
+
+.bottom-nav .nav-item:hover {
+    opacity: 1 !important;
+}
+
+.bottom-nav .nav-item:hover .nav-icon {
+    transform: translateY(-2px);
+}
+
+.bottom-nav .nav-item.active {
+    opacity: 1 !important;
+}
+
+.bottom-nav .nav-item.active .nav-icon {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    stroke-width: var(--bn-nav-icon-stroke);
+    filter: drop-shadow(0 0 6px rgba(75, 227, 155, 0.8)) !important;
+    transform: translateY(0px) scale(1.05);
+}
+
+/* Active State Label */
+.bottom-nav .nav-item.active .nav-label {
+    color: #4be39b !important;
+    /* Emerald green text for active item */
+    font-weight: 600 !important;
+    transition: color 0.25s ease !important;
+}
+
+/* Premium Active Underline Pill Indicator */
+.bottom-nav .nav-item.active::after {
+    content: '';
+    display: block;
+    width: 14px;
+    height: 3px;
+    background: #4be39b !important;
+    border-radius: var(--paymex-radius-pill);
+    margin-top: 1.5px;
+    box-shadow:
+        0 0 8px rgba(75, 227, 155, 0.9),
+        0 0 15px rgba(75, 227, 155, 0.5);
+    animation: navDotPop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes navDotPop {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* FAB central spacer text handling */
+.bottom-nav .nav-item--fab-spacer {
+    opacity: 0.85 !important;
+}
+
+.bottom-nav__fab.is-active~.bottom-nav__row .nav-item--fab-spacer {
+    opacity: 1 !important;
+}
+
+.bottom-nav .nav-label,
+.bottom-nav .nav-label--fab,
+.bottom-nav .nav-label--fab .nav-label-line {
+    color: #ffffff !important;
+}
+
+/* Header Theme
+   ========================================================================= */
+
+.top-header {
+    background: rgba(14, 44, 32, 0.25) !important;
+    backdrop-filter: blur(20px) saturate(1.5) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.5) !important;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: 12px !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.brand-name {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.top-badge {
+    background: rgba(14, 44, 32, 0.55);
+    border: 1px solid var(--paymex-border-hairline);
+    color: var(--paymex-text-secondary);
+    font-size: var(--paymex-font-micro);
+    padding: 5px 10px;
+    border-radius: var(--paymex-radius-pill);
+    max-width: none;
+}
+
+/* Home Page Theme Overrides
+   ========================================================================= */
+
+#page-home.home-page {
+    padding-top: max(6px, env(safe-area-inset-top, 0px));
+}
+
+#page-home.home-page .exchange-card.card.feature-card--green {
+    border: 1px solid var(--paymex-border-exchange) !important;
+    border-radius: var(--paymex-radius-exchange) !important;
+    background: var(--paymex-card-gradient-main) !important;
+    box-shadow: var(--paymex-card-shadow-main) !important;
+    backdrop-filter: blur(20px) saturate(1.4) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+    padding: 18px 16px 16px !important;
+    margin-bottom: 14px !important;
+}
+
+@media (max-width: 360px) {
+    #page-home.home-page .exchange-card.card.feature-card--green {
+        padding: 16px 14px 14px !important;
+        margin-bottom: 12px !important;
+    }
+}
+
+@media (max-width: 340px) {
+    #page-home.home-page .exchange-card.card.feature-card--green {
+        padding: 14px 12px 12px !important;
+        margin-bottom: 10px !important;
+    }
+}
+
+/* Exchange Card Theme
+   ========================================================================= */
+
+/* Поля сумм встроены в карточку — без отдельных «коробок» */
+#page-home.home-page .exchange-card .input-row {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+#page-home.home-page .exchange-card .label {
+    color: var(--paymex-text-secondary);
+    font-size: 13px;
+}
+
+#page-home.home-page .exchange-card .label .highlight {
+    color: var(--paymex-text-primary);
+    font-weight: 600;
+}
+
+#page-home.home-page .exchange-card .input-group:first-child {
+    padding-bottom: 10px !important;
+}
+
+#page-home.home-page .exchange-card .input-group+.input-group {
+    margin-top: 6px !important;
+}
+
+#page-home.home-page .exchange-card .swap-divider {
+    margin: 14px 0 10px !important;
+}
+
+#page-home.home-page .exchange-card .swap-divider::before {
+    background: var(--paymex-border-muted) !important;
+    transform: none;
+    top: 0;
+    height: 1px;
+}
+
+#page-home.home-page .exchange-card .rate-info {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+#page-home.home-page .exchange-card .rate-hint {
+    color: var(--paymex-text-secondary);
+}
+
+#page-home.home-page #exchange-btn,
+#page-home.home-page #exchange-btn.disabled {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: var(--paymex-exchange-btn-h) !important;
+    min-height: var(--paymex-exchange-btn-h) !important;
+    box-sizing: border-box !important;
+    border: 1px solid var(--paymex-border-button) !important;
+    border-radius: var(--paymex-radius-button-lg) !important;
+    background: transparent !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    margin-top: 14px !important;
+    padding: 0 16px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+}
+
+#page-home.home-page .exchange-card input[type='number'] {
+    font-size: clamp(28px, 8vw, 36px);
+    font-weight: 600;
+    line-height: 1.1;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+#page-home.home-page .exchange-card input[type='number']::placeholder {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+@media (max-width: 340px) {
+    #page-home.home-page .exchange-card input[type='number'] {
+        font-size: clamp(24px, 7vw, 30px);
+    }
+}
+
+#page-home.home-page .exchange-card .currency-select {
+    background: linear-gradient(180deg, #12382b 0%, var(--paymex-surface-input) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    border-radius: 16px;
+    box-shadow: none !important;
+    min-width: 90px;
+    padding: 7px 14px !important;
+}
+
+@media (max-width: 360px) {
+    #page-home.home-page .exchange-card .currency-select {
+        min-width: 80px;
+        padding: 6px 12px !important;
+    }
+}
+
+@media (max-width: 340px) {
+    #page-home.home-page .exchange-card .currency-select {
+        min-width: 72px;
+        padding: 5px 10px !important;
+    }
+}
+
+#page-home.home-page .exchange-card .currency-title {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#page-home.home-page .exchange-card .currency-subtitle {
+    font-size: 10px;
+    color: var(--paymex-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 360px) {
+    #page-home.home-page .exchange-card .currency-title {
+        font-size: 14px;
+    }
+
+    #page-home.home-page .exchange-card .currency-subtitle {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 340px) {
+    #page-home.home-page .exchange-card .currency-title {
+        font-size: 13px;
+    }
+
+    #page-home.home-page .exchange-card .currency-subtitle {
+        font-size: 9px;
+    }
+}
+
+#page-home.home-page .exchange-card .rate-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 2px;
+}
+
+#page-home.home-page .exchange-card .rate-info b {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+#page-home.home-page .exchange-card .currency-select .arrow {
+    display: none !important;
+}
+
+#page-home.home-page .exchange-card .swap-divider .swap-button {
+    background: linear-gradient(180deg, #12382b 0%, var(--paymex-surface-input) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    color: var(--paymex-text-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+}
+
+/* Services Grid Theme
+   ========================================================================= */
+
+#page-home.home-page .services-grid .feature-card,
+#page-home.home-page .deposits-teaser.feature-card--green,
+#page-home.home-page .about-text.feature-card--green,
+#page-home.home-page .list-card.feature-card--green {
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+    /* Very subtle borders */
+    background: var(--paymex-card-gradient-feature) !important;
+    /* very subtle deep emerald-green gradient glowing effect */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 10px rgba(16, 185, 129, 0.1) inset, 0 0 8px rgba(16, 185, 129, 0.15) !important;
+    border-radius: var(--paymex-radius-feature) !important;
+    backdrop-filter: blur(20px) saturate(1.4) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+}
+
+#page-home.home-page .feature-icon-circle--section {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: rgba(90, 224, 168, 0.95) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+#page-home.home-page .secondary-button {
+    border: 1px solid var(--paymex-border-button) !important;
+    background: transparent !important;
+}
+
+#page-home.home-page .services-grid .feature-card-buttons {
+    gap: var(--paymex-service-btn-gap) !important;
+    width: 100%;
+}
+
+#page-home.home-page .services-grid .secondary-button,
+#page-home.home-page .services-grid .feature-card-buttons .secondary-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: var(--paymex-service-btn-h) !important;
+    min-height: var(--paymex-service-btn-h) !important;
+    max-height: var(--paymex-service-btn-h) !important;
+    padding: 0 12px !important;
+    border-radius: var(--paymex-service-btn-r) !important;
+    font-size: var(--paymex-font-caption) !important;
+    font-weight: 600 !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box !important;
+}
+
+#page-home.home-page .services-grid button.secondary-button[data-service='referral'] {
+    font-size: 10px !important;
+    padding: 0 8px !important;
+}
+
+@media (max-width: 360px) {
+
+    #page-home.home-page .services-grid .secondary-button,
+    #page-home.home-page .services-grid .feature-card-buttons .secondary-button {
+        font-size: 11px !important;
+        padding: 0 10px !important;
+        height: 38px !important;
+        min-height: 38px !important;
+        max-height: 38px !important;
+    }
+
+    #page-home.home-page .services-grid button.secondary-button[data-service='referral'] {
+        font-size: 10px !important;
+        padding: 0 6px !important;
+    }
+}
+
+@media (max-width: 340px) {
+
+    #page-home.home-page .services-grid .secondary-button,
+    #page-home.home-page .services-grid .feature-card-buttons .secondary-button {
+        font-size: 10px !important;
+        padding: 0 8px !important;
+        height: 36px !important;
+        min-height: 36px !important;
+        max-height: 36px !important;
+    }
+
+    #page-home.home-page .services-grid button.secondary-button[data-service='referral'] {
+        font-size: 9px !important;
+        padding: 0 5px !important;
+    }
+}
+
+#page-home.home-page .services-grid {
+    margin-bottom: 14px;
+    gap: 12px;
+}
+
+@media (max-width: 340px) {
+    #page-home.home-page .services-grid {
+        gap: 10px;
+    }
+}
+
+#page-home.home-page .services-grid .feature-card {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100%;
+    padding: var(--paymex-service-card-pad) !important;
+}
+
+#page-home.home-page .services-grid .feature-card>p {
+    flex: 1 1 auto;
+    margin-bottom: 10px !important;
+}
+
+#page-home.home-page .services-grid .feature-card>.secondary-button,
+#page-home.home-page .services-grid .feature-card>.feature-card-buttons {
+    margin-top: auto !important;
+}
+
+#page-home.home-page .services-grid .feature-card h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+#page-home.home-page .services-grid .feature-card p {
+    font-size: 12px;
+    line-height: 1.45;
+    margin-bottom: 12px;
+    color: var(--paymex-text-secondary);
+}
+
+@media (max-width: 360px) {
+    #page-home.home-page .services-grid .feature-card h3 {
+        font-size: 13px;
+        margin-bottom: 7px;
+    }
+
+    #page-home.home-page .services-grid .feature-card p {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 340px) {
+    #page-home.home-page .services-grid .feature-card h3 {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    #page-home.home-page .services-grid .feature-card p {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+}
+
+#page-home.home-page .services-grid .feature-icon-circle {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Rate Pills Theme
+   ========================================================================= */
+
+#page-home.home-page .rates-strip {
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+#page-home.home-page .rates-track {
+    gap: 10px;
+    animation: rates-scroll 25s linear infinite;
+    width: max-content;
+}
+
+#page-home.home-page .rate-pill {
+    border-color: var(--paymex-border-chip);
+    padding: 7px 12px 7px 8px;
+    background: var(--paymex-chip-gradient) !important;
+    box-shadow: var(--paymex-chip-shadow) !important;
+}
+
+@media (max-width: 340px) {
+    #page-home.home-page .rate-pill {
+        padding: 6px 10px 6px 7px;
+    }
+}
+
+/* Below Fold Theme
+   ========================================================================= */
+
+#page-home.home-page .section-list {
+    margin-bottom: var(--layout-section-gap);
+}
+
+#page-home.home-page .bottom-nav .nav-item:not(.nav-item--fab) {
+    color: #ffffff;
+}
+
+#page-home.home-page .nav-item.active {
+    color: #ffffff;
+}
+
+/* Все блоки главной видны (перебивает publish-tbot display:none) */
+#page-home.home-page .home-below-fold {
+    display: block !important;
+}
+
+#page-home.home-page .section-title-text {
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: var(--paymex-font-label);
+}
+
+#page-home.home-page .map-btn.map-btn--exchange {
+    border: 1px solid var(--paymex-border-card) !important;
+    background: var(--paymex-card-gradient-feature) !important;
+    border-radius: var(--paymex-radius-feature) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32) !important;
+    text-decoration: none;
+    color: var(--text-main);
+}
+
+#page-home.home-page .map-btn.map-btn--exchange:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+#page-home.home-page .deposits-teaser,
+#page-home.home-page .about-text {
+    padding: 16px !important;
+}
+
+#page-home.home-page .deposits-teaser-text,
+#page-home.home-page .about-text p {
+    font-size: var(--paymex-font-caption);
+    line-height: 1.45;
+    color: var(--paymex-text-secondary);
+}
+
+#page-home.home-page .list-card.feature-card--green {
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+#page-home.home-page .list-item {
+    color: var(--paymex-text-primary);
+}
+
+#page-home.home-page .list-subtitle {
+    color: var(--paymex-text-secondary);
+    font-size: var(--paymex-font-caption);
+}
+
+#page-home.home-page .list-icon.list-icon--svg {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+}
+
+#page-home.home-page .secondary-button {
+    font-size: var(--paymex-font-caption);
+    font-weight: 600;
+    padding: 11px 14px;
+}
+
+/* Responsive Header Adjustments
+   ========================================================================= */
+
+@media (max-width: 360px) {
+    .top-header-inner {
+        gap: var(--space-3);
+    }
+
+    .top-badge {
+        font-size: 10px;
+        padding: var(--space-1) var(--space-3);
+        max-width: 46vw;
+    }
+}
+
+@media (max-width: 340px) {
+    .top-header-inner {
+        gap: var(--space-2);
+    }
+
+    .top-badge {
+        font-size: 9px;
+        padding: 3px 8px;
+        max-width: 42vw;
+    }
+
+    .brand-name {
+        font-size: 15px;
+    }
+}
+
+/* =========================================================================
+   ICON SIZE ENHANCEMENTS
+   ========================================================================= */
+
+#page-home.home-page .feature-icon-circle {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 16px !important;
+}
+
+#page-home.home-page .feature-icon-circle svg {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* =========================================================================
+   DROPDOWN AND MODAL LIST RESETS (Fixes broken lists and overlapping text)
+   ========================================================================= */
+
+.modal-body ul,
+.modal-surface ul,
+.modal-box ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+.modal-body li,
+.modal-surface li,
+.modal-box li {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+/* =========================================================================
+   CURRENCY PICKER MODAL STYLING (Screenshot 2 Fix)
+   ========================================================================= */
+
+.currency-picker-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+.currency-picker-list li {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.currency-picker-item {
+    width: 100% !important;
+    min-width: 100% !important;
+    padding: 14px 20px !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    font-family: inherit !important;
+    outline: none !important;
+    text-align: left !important;
+}
+
+.currency-picker-item:hover,
+.currency-picker-item:focus {
+    background: rgba(75, 227, 155, 0.08) !important;
+    border-color: rgba(75, 227, 155, 0.3) !important;
+    box-shadow: 0 6px 20px rgba(11, 115, 95, 0.2) !important;
+    transform: translateY(-1px) !important;
+}
+
+.currency-picker-item:active {
+    transform: translateY(0) !important;
+    background: rgba(75, 227, 155, 0.12) !important;
+}
+
+/* Text styles inside currency picker items */
+.currency-picker-title {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    letter-spacing: 0.5px !important;
+    transition: color 0.25s ease !important;
+}
+
+.currency-picker-item:hover .currency-picker-title {
+    color: var(--accent-color) !important;
+}
+
+.currency-picker-subtitle {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    transition: color 0.25s ease !important;
+}
+
+.currency-picker-item:hover .currency-picker-subtitle {
+    color: rgba(75, 227, 155, 0.8) !important;
+}
+
+/* =========================================================================
+   PREMIUM DROPDOWN SELECT STYLING
+   ========================================================================= */
+
+select.modal-select,
+.modal-input.modal-select {
+    background-color: #0a2a1f !important;
+    border: 1px solid rgba(75, 227, 155, 0.22) !important;
+    color: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 14px 20px 14px 18px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    color-scheme: dark !important;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+    transition: all 0.25s ease !important;
+}
+
+select.modal-select:focus,
+select.modal-select:active,
+.modal-input.modal-select:focus,
+.modal-input.modal-select:active {
+    outline: none !important;
+    border-color: rgba(75, 227, 155, 0.5) !important;
+    background-color: #0c3325 !important;
+    box-shadow:
+        0 0 15px rgba(75, 227, 155, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+select.modal-select option,
+.modal-input.modal-select option {
+    background-color: #0a1f18 !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    padding: 14px 16px !important;
+}
+
+select.modal-select option:checked,
+.modal-input.modal-select option:checked {
+    background-color: #0b735f !important;
+    color: #ffffff !important;
+}

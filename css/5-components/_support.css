@@ -1,0 +1,21 @@
+/* ============================================================================
+   SUPPORT COMPONENT
+   Support page card and note
+   ========================================================================= */
+
+.support-card .support-text {
+    margin: 0 0 var(--space-7);
+    font-size: var(--text-body-lg);
+    color: var(--text-secondary);
+}
+
+.support-card .support-btn {
+    margin-top: 0;
+}
+
+.support-note {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+}

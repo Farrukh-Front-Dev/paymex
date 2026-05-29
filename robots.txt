@@ -1,0 +1,3 @@
+# PAYMEX — Telegram Mini App; индексация поисковиками не используется.
+User-agent: *
+Disallow: /

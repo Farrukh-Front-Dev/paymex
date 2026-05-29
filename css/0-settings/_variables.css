@@ -1,0 +1,224 @@
+/* ============================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   PAYMEX Design System
+   ============================================ */
+
+:root {
+    color-scheme: dark;
+
+    /* ============================================
+       COLOR PALETTE
+       ============================================ */
+    
+    /* Background Colors */
+    --bg-color: #1a4d42;
+    --bg-gradient-top: #2d6b5f;
+    --bg-gradient-mid: #1f5a4f;
+    --bg-gradient-end: #164038;
+    --bg-gradient-start: #1f5a4f;
+    
+    /* Surface Colors */
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-elevated: rgba(255, 255, 255, 0.05);
+    --surface-input: rgba(0, 0, 0, 0.35);
+    --surface-pill: rgba(0, 0, 0, 0.3);
+    --nav-bg: rgba(3, 8, 6, 0.78);
+    
+    /* Accent Colors */
+    --accent-color: #2e7569;
+    --accent-fab: #348f6c;
+    --accent-soft: rgba(52, 143, 108, 0.22);
+    
+    /* Text Colors */
+    --text-main: #ffffff;
+    --text-secondary: #a3c1b5;
+    --text-muted: #8fa89c;
+    
+    /* Border Colors */
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.2);
+    
+    /* Status Colors */
+    --success: #4be39b;
+
+    /* ============================================
+       HUB / LEGACY ALIASES
+       ============================================ */
+    --home-cyan: #4be39b;
+    --home-cyan-mid: #4be39b;
+    --home-cyan-glow: rgba(75, 227, 155, 0.45);
+    
+    /* Glass morphism effects */
+    --home-glass-fill: rgba(255, 255, 255, 0.055);
+    --home-glass-border: rgba(255, 255, 255, 0.11);
+    --home-glass-blur: 20px;
+    --home-glass-saturate: 1.9;
+    --home-glass-tint-top: rgba(255, 255, 255, 0.14);
+    --home-glass-tint-deep: rgba(6, 8, 14, 0.78);
+    
+    /* Navigation */
+    --nav-tab-active: #ffffff;
+    --nav-tab-active-glow: rgba(255, 255, 255, 0.35);
+
+    /* ============================================
+       SPACING SCALE
+       Шкала отступов: шаг ~2px у мелких, кратность 4px у крупных.
+       Макет экрана и повторяющиеся блоки — через --layout-* и --page-pad-*.
+       Новые компоненты: не вводите «сырые» px без причины (иконки, 1px hairline).
+       ============================================ */
+    --space-1: 4px;
+    --space-2: 6px;
+    --space-3: 8px;
+    --space-4: 10px;
+    --space-5: 12px;
+    --space-6: 14px;
+    --space-7: 16px;
+    --space-8: 18px;
+    --space-9: 20px;
+    --space-10: 24px;
+    --space-11: 26px;
+    --space-12: 32px;
+    --space-14: 40px;
+    --space-micro: 5px;
+    --space-tight-7: 7px;
+    --space-tight-9: 9px;
+
+    /* ============================================
+       LAYOUT SYSTEM
+       Семантика поверх шкалы — меняем отступы экрана здесь
+       Mobile-first: centered container with max-width
+       ============================================ */
+    --layout-content-max: 480px;
+    --layout-content-min: 320px;
+    --layout-overlay-padding: var(--space-7);
+    --layout-modal-body-end: var(--space-9);
+    --layout-hit-target: 44px;
+    --layout-section-gap: var(--space-6);
+    --layout-card-gap: var(--space-5);
+    
+    /* Chat layout */
+    --layout-chat-input-bottom: calc(var(--page-pad-bottom-base) - 20px);
+    --layout-chat-messages-pad-bottom: calc(var(--page-pad-bottom-base) + var(--space-5));
+
+    /* Page padding */
+    --page-pad-inline: var(--space-9);
+    --page-pad-block: var(--space-5);
+    
+    /* Bottom navigation dimensions */
+    --bn-height: 76px;
+    --bn-fab-size: 56px;
+    --bn-notch-r: 32px;
+    --bn-fab-edge-y: 2px;
+    --bn-label-offset: 5px;
+    --page-pad-bottom-base: calc(var(--bn-height) + 16px);
+    --page-pad-bottom: calc(var(--page-pad-bottom-base) + env(safe-area-inset-bottom, 0px));
+
+    /* ============================================
+       HOME PAGE SPACING
+       Единый зазор иконка → текст справа и заголовок с иконкой → контент снизу.
+       Меняйте только здесь — все блоки с иконками на главной подтянутся.
+       ============================================ */
+    --home-icon-gap-inline: var(--space-5);
+    --home-icon-gap-block: var(--space-5);
+
+    /* ============================================
+       HUB TYPOGRAPHY
+       Шкала под макет (~390px)
+       ============================================ */
+    --hub-rate-label-size: 13px;
+    --hub-rate-value-size: 11px;
+    --hub-tile-label-size: 12px;
+    --hub-tile-label-lh: 1.18;
+    --hub-apple-label-size: 12px;
+    --hub-featured-title-size: 21px;
+    --hub-featured-sub-size: 12px;
+    --hub-wide-title-size: 13px;
+    --hub-wide-sub-size: 11px;
+
+    /* ============================================
+       SECTION HEADINGS
+       Заголовки секций (Депозиты / О нас / Как добраться): единая геометрия
+       ============================================ */
+    --section-heading-icon-size: 32px;
+    --section-heading-icon-inner: 18px;
+    --section-heading-gap: var(--space-5);
+    --section-heading-margin-bottom: var(--space-6);
+
+    /* ============================================
+       BORDER RADIUS
+       ============================================ */
+    --radius-sm: 10px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 18px;
+    --radius-2xl: var(--space-9);
+    --radius-card: var(--space-11);
+    --radius-pill: 999px;
+
+    /* ============================================
+       TYPOGRAPHY SCALE
+       Одна шкала для всего UI (px — стабильно в WebView Telegram)
+       ============================================ */
+    --font-family: "Muller", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    
+    /* Font sizes */
+    --text-2xs: 9px;
+    --text-xs: 10px;
+    --text-sm: 11px;
+    --text-sub: 12px;
+    --text-body: 13px;
+    --text-body-lg: 14px;
+    --text-title-sm: 15px;
+    --text-title: 17px;
+    --text-headline: 19px;
+    --text-display-sm: 21px;
+    --text-display: 23px;
+    --text-metric: 25px;
+    --text-hero: 35px;
+    --text-loader: 41px;
+    --text-empty: 47px;
+    
+    /* Line heights */
+    --line-height-tight: 1.22;
+    --line-height-snug: 1.35;
+    --line-height-normal: 1.45;
+    --line-height-relaxed: 1.55;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Маленькие экраны: слегка уменьшаем типографику, чтобы блоки не "разъезжались" */
+@media (max-width: 360px) {
+    :root {
+        --text-2xs: 9px;
+        --text-xs: 10px;
+        --text-sm: 11px;
+        --text-sub: 12px;
+        --text-body: 13px;
+        --text-body-lg: 14px;
+        --text-title-sm: 15px;
+        --text-title: 17px;
+        --text-headline: 19px;
+        --text-display-sm: 21px;
+        --text-display: 23px;
+        --text-metric: 25px;
+        --text-hero: 34px;
+        --text-loader: 40px;
+        --text-empty: 46px;
+        --page-pad-inline: 16px;
+    }
+}
+
+/* Extra small screens (iPhone SE, small Android) */
+@media (max-width: 340px) {
+    :root {
+        --text-hero: 32px;
+        --text-metric: 24px;
+        --text-display: 22px;
+        --page-pad-inline: 14px;
+        --space-7: 14px;
+        --space-8: 16px;
+    }
+}

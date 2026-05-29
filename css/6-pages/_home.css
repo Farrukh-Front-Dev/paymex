@@ -1,0 +1,147 @@
+/* ============================================================================
+   HOME PAGE
+   #page-home specific overrides and glassmorphism effects
+   ========================================================================= */
+
+/* Home Page Layout
+   ========================================================================= */
+
+/* LEGACY: HomeHubGrid не подключён к HomePage — стили home-hub/* только для :has(.home-glass-card) */
+#page-home.home-page {
+    position: relative;
+    isolation: isolate;
+    padding-top: max(var(--space-4), env(safe-area-inset-top, 0px));
+    background: transparent;
+}
+
+/* Liquid Glass — только если на странице есть home-glass-card (HomeHubGrid) */
+#page-home.home-page:has(.home-glass-card) {
+    --home-glass-fill: rgba(255, 255, 255, 0.03);
+    --home-glass-border: rgba(247, 248, 248, 0.09);
+    --home-glass-blur: 28px;
+    --home-glass-saturate: 1.68;
+    --home-glass-tint-top: rgba(255, 255, 255, 0.07);
+    --home-glass-tint-mid: rgba(20, 21, 24, 0.14);
+    --home-glass-tint-deep: rgba(1, 1, 2, 0.22);
+}
+
+/* Glass Effects on Components
+   ========================================================================= */
+
+/* Заголовки секций, иконка в списке офиса, кнопка карты — тот же glass-язык, что у плиток хаба */
+#page-home .feature-icon-circle--section {
+    position: relative;
+    isolation: isolate;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(247, 248, 248, 0.1);
+    box-shadow:
+        inset 0 1px 0 rgba(247, 248, 248, 0.08),
+        0 2px 14px rgba(0, 0, 0, 0.28);
+    color: rgba(0, 232, 220, 0.95);
+    backdrop-filter: blur(22px) saturate(1.55);
+    -webkit-backdrop-filter: blur(22px) saturate(1.55);
+}
+
+#page-home .home-glass-card.list-card .list-icon {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(247, 248, 248, 0.08);
+    backdrop-filter: blur(18px) saturate(1.45);
+    -webkit-backdrop-filter: blur(18px) saturate(1.45);
+}
+
+#page-home .map-btn.map-btn--exchange.home-glass-card {
+    color: var(--text-main);
+    transform: translateY(-1px);
+}
+
+#page-home .map-btn.map-btn--exchange.home-glass-card:hover {
+    border-color: rgba(0, 245, 232, 0.42) !important;
+    box-shadow:
+        0 0 0 1px rgba(35, 37, 42, 0.35),
+        0 0 0 1px rgba(0, 245, 232, 0.16),
+        0 14px 36px rgba(0, 0, 0, 0.38),
+        0 3px 12px rgba(0, 245, 232, 0.1),
+        inset 0 1px 0 rgba(247, 248, 248, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+    opacity: 1;
+}
+
+#page-home .map-btn.map-btn--exchange.home-glass-card:active {
+    transform: translateY(0) scale(0.985);
+}
+
+/* Главная: лёгкие панели (Linear hairline), стекло читабельно за счёт blur на странице */
+#page-home .home-glass-card {
+    border: 1px solid var(--home-glass-border) !important;
+    box-shadow:
+        0 0 0 1px rgba(35, 37, 42, 0.4),
+        0 14px 36px rgba(0, 0, 0, 0.32),
+        0 2px 10px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(247, 248, 248, 0.07),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.16);
+}
+
+#page-home .home-glass-card--glow {
+    box-shadow:
+        0 0 0 1px rgba(0, 245, 232, 0.38),
+        0 0 32px rgba(0, 245, 232, 0.26),
+        0 0 56px rgba(0, 200, 190, 0.14),
+        0 16px 44px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(247, 248, 248, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+    border-color: rgba(0, 245, 232, 0.42) !important;
+}
+
+#page-home .home-hub-tile__icon-wrap--lucide {
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(247, 248, 248, 0.08);
+}
+
+/* Liquid Glass Filters
+   ========================================================================= */
+
+/*
+ * Liquid Glass (cssscript.com/.../liquid-glass): Large — крупные блоки;
+ * Compact — плитки и pills. На главной — усиленная прозрачность через #page-home vars.
+ */
+#page-home .deposits-teaser.home-glass-card::before,
+#page-home .about-text.home-glass-card::before,
+#page-home .list-card.home-glass-card::before,
+#page-home .map-btn.map-btn--exchange.home-glass-card::before {
+    filter: url('#liquidGlassFilter');
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    #page-home .deposits-teaser.home-glass-card::before,
+    #page-home .about-text.home-glass-card::before,
+    #page-home .list-card.home-glass-card::before,
+    #page-home .map-btn.map-btn--exchange.home-glass-card::before {
+        filter: none;
+    }
+}
+
+/* Глянец ::after — крупные блоки (мягче на прозрачном стекле) */
+#page-home .deposits-teaser.home-glass-card::after,
+#page-home .about-text.home-glass-card::after,
+#page-home .list-card.home-glass-card::after,
+#page-home .map-btn.map-btn--exchange.home-glass-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: rgb(255 255 255 / 2%);
+    box-shadow:
+        inset 1px 1px 2px 1px rgb(255 255 255 / 22%),
+        inset -1px -1px 2px 1px rgb(49 49 49 / 18%),
+        0 0 6px 1px rgb(0 0 0 / 28%);
+}
+
+/* Card Overrides
+   ========================================================================= */
+
+#page-home .list-card.feature-card--green {
+    border: 1px solid var(--paymex-border-card, rgba(255, 255, 255, 0.18));
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+}

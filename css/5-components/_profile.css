@@ -1,0 +1,168 @@
+/* ============================================
+   PROFILE PAGE
+   Профиль — по макету
+   ============================================ */
+
+/* ============================================
+   PROFILE HEADER
+   ============================================ */
+
+.profile-header {
+    margin-bottom: var(--space-9);
+}
+
+.profile-welcome {
+    font-size: var(--text-headline);
+    font-weight: 700;
+    margin: 0;
+    line-height: var(--line-height-tight);
+    color: var(--text-main);
+}
+
+/* ============================================
+   PROFILE DISCOUNT CARD
+   ============================================ */
+
+.profile-discount {
+    margin-bottom: var(--space-9);
+    padding: var(--space-8) var(--space-7);
+}
+
+.profile-discount-text {
+    margin: 0 0 var(--space-1);
+    font-size: var(--text-body-lg);
+    color: var(--text-main);
+}
+
+.profile-discount-accent {
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+}
+
+.profile-discount-tiers {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.profile-tier {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-3);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+}
+
+.profile-tier span:first-child {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.profile-tier.active {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+.profile-tier.active span {
+    color: #fff;
+}
+
+/* ============================================
+   PROFILE GROUPS
+   ============================================ */
+
+.profile-groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    margin-bottom: var(--space-5);
+}
+
+.profile-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    background: var(--card-elevated);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ============================================
+   PROFILE LIST ITEMS
+   ============================================ */
+
+.profile-list-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    padding: var(--space-6) var(--space-7);
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: var(--text-body);
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.profile-list-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.profile-list-item + .profile-list-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.profile-list-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(11, 115, 95, 0.35);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profile-list-icon svg {
+    width: 20px;
+    height: 20px;
+    color: currentColor;
+}
+
+.profile-list-label {
+    flex: 1;
+}
+
+.profile-list-item .chevron {
+    flex-shrink: 0;
+}
+
+.profile-list-item-single {
+    background: var(--card-elevated);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.profile-list-item-single .profile-list-label {
+    margin-left: 0;
+}
+
+/* ============================================
+   PROFILE MODAL
+   ============================================ */
+
+.profile-modal-loading,
+.profile-modal-hint {
+    color: var(--text-secondary);
+    font-size: var(--text-body);
+    margin-top: var(--space-5);
+}

@@ -1,0 +1,155 @@
+/**
+ * PAYMEX — Dark Green Theme (Matching Screenshot)
+ * ─────────────────────────────────────────────
+ * Updated to match the provided design screenshot
+ * Dark green gradient with proper colors and borders
+ */
+
+:root {
+    /* ── Color Palette - Deep Dark Forest Green ── */
+    --paymex-bg-deep: #050f0d;
+    --paymex-bg-mid: #0a1f1a;
+    --paymex-bg-top: #0d2822;
+    --paymex-surface-input: #061613;
+    --paymex-chip-bg: #09221a;
+    --paymex-text-primary: #ffffff;
+    --paymex-text-secondary: #8fa89c;
+    --paymex-border-muted: rgba(255, 255, 255, 0.18);
+    --paymex-border-card: rgba(255, 255, 255, 0.3);
+    --paymex-border-exchange: rgba(255, 255, 255, 0.4);
+    --paymex-accent-fab: #0d2822;
+    --paymex-nav-notch-gap: 4px;
+    --paymex-nav-fab-size: 60px;
+
+    /* Bottom Navigation — screenshot bilan mos */
+    --bn-height: 64px;
+    --bn-fab-size: 58px;
+    /* screenshot: 58px diameter */
+    --bn-notch-r: 34px;
+    /* notch radius: FAB/2 + 5px gap */
+    --bn-fab-edge-y: 0px;
+    /* FAB center exactly at bar top edge */
+    --bn-label-offset: 2px;
+    --bn-nav-icon-size: 26px;
+    --bn-nav-qr-icon-size: 26px;
+    --bn-nav-icon-stroke: 2.0;
+    --bn-bar: #060b08;
+
+    /* Bar SVG gradient colors — rasmga mos */
+    --bn-bar-bg: #060b08;
+    /* dark green-black base */
+    --bn-border-color: rgba(255, 255, 255, 0.18);
+    /* subtle white hairline */
+
+    /* Radial Glow stops (reference image values) */
+    --bn-glow-0: #1a4a35;
+    --bn-glow-1: #153d2c;
+    --bn-glow-2: #112f22;
+    --bn-glow-3: #0d2319;
+    --bn-glow-4: #0a1a12;
+    --bn-glow-5: #08130d;
+    --bn-glow-6: #060e09;
+    --bn-glow-9: #040906;
+
+    /* Aliases */
+    --paymex-deep: var(--paymex-bg-deep);
+    --paymex-forest: var(--paymex-bg-mid);
+    --paymex-glow-rgb: 45, 85, 72;
+
+    /* ① Background Gradient - Vibrant Emerald Radial Glow + Deep Dark Base */
+    --paymex-bg-gradient:
+        radial-gradient(ellipse 90% 70% at 50% -8%,
+            rgba(20, 160, 115, 0.72) 0%,
+            rgba(13, 107, 77, 0.36) 35%,
+            rgba(6, 45, 33, 0.16) 62%,
+            transparent 85%),
+        radial-gradient(ellipse 80% 45% at 50% 108%,
+            rgba(16, 185, 129, 0.55) 0%,
+            rgba(11, 120, 85, 0.28) 30%,
+            rgba(6, 50, 36, 0.12) 55%,
+            transparent 80%),
+        linear-gradient(180deg,
+            #041712 0%,
+            var(--paymex-bg-deep) 42%,
+            #010504 100%);
+
+    --paymex-border-hairline: rgba(255, 255, 255, 0.25);
+    --paymex-radius-pill: 999px;
+    --paymex-font-label: 13px;
+    --paymex-font-caption: 12px;
+    --paymex-font-micro: 10px;
+
+    /* ② Grain/Noise */
+    --paymex-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    --paymex-noise-opacity: 0.03;
+    --paymex-noise-size: 160px;
+
+    /* ③ Exchange Card - Translucent Vibrant Forest Glass */
+    --paymex-card-gradient-main:
+        radial-gradient(130% 110% at 50% -10%,
+            rgba(32, 120, 92, 0.45) 0%,
+            rgba(20, 80, 62, 0.6) 25%,
+            rgba(10, 31, 26, 0.85) 60%,
+            rgba(6, 25, 20, 0.98) 100%);
+
+    /* ④ Feature Cards - Translucent Vibrant Forest Glass */
+    --paymex-card-gradient-feature:
+        radial-gradient(130% 110% at 50% -10%,
+            rgba(32, 120, 92, 0.35) 0%,
+            rgba(18, 70, 54, 0.55) 28%,
+            rgba(8, 31, 24, 0.85) 60%,
+            rgba(5, 20, 16, 0.98) 100%);
+
+    /* ④-A Service Cards - Sleek Dark Forest Glass */
+    --paymex-card-gradient-service:
+        linear-gradient(180deg,
+            rgba(13, 40, 34, 0.65) 0%,
+            rgba(5, 15, 13, 0.85) 100%);
+
+    /* ④-B Deposits/About Cards - Sleek Dark Forest Glass */
+    --paymex-card-gradient-info:
+        linear-gradient(180deg,
+            rgba(13, 40, 34, 0.65) 0%,
+            rgba(5, 15, 13, 0.85) 100%);
+
+    /* ⑤ Rate Pills - Forest Green Capsules (matching mockup) */
+    --paymex-chip-gradient:
+        linear-gradient(180deg, #255541 0%, #1a4132 48%, #142e25 100%);
+    --paymex-chip-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.34),
+        0 0 14px rgba(37, 85, 65, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    /* ⑥ FAB Button - Solid #163828 with #2D664A halo */
+    --paymex-fab-gradient: #163828;
+    --paymex-fab-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.5),
+        0 0 20px #2D664A;
+    --paymex-fab-border: rgba(255, 255, 255, 0.2);
+
+    /* Card Shadows - Deep volume */
+    --paymex-card-shadow-main:
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -24px 48px rgba(0, 0, 0, 0.12),
+        0 10px 32px rgba(0, 0, 0, 0.38);
+    --paymex-card-shadow-feature:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -20px 40px rgba(0, 0, 0, 0.1),
+        0 8px 26px rgba(0, 0, 0, 0.34);
+
+    /* Borders - Crisp white/translucent matching mockup */
+    --paymex-border-chip: rgba(255, 255, 255, 0.3);
+    --paymex-border-button: rgba(255, 255, 255, 0.65);
+    --paymex-border-card: rgba(255, 255, 255, 0.35);
+    --paymex-border-exchange: rgba(255, 255, 255, 0.5);
+    --paymex-radius-exchange: 32px;
+    --paymex-radius-feature: 24px;
+
+    /* Button Dimensions */
+    --paymex-service-btn-h: 40px;
+    --paymex-service-btn-r: 14px;
+    --paymex-service-btn-gap: 8px;
+    --paymex-service-card-pad: 18px;
+    --paymex-exchange-btn-h: 46px;
+    --paymex-radius-button-lg: 14px;
+}

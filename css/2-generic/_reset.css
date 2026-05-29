@@ -1,0 +1,10 @@
+/* ============================================
+   RESET / NORMALIZE
+   Box-sizing and basic resets
+   ============================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}

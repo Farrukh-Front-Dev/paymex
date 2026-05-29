@@ -1,0 +1,23 @@
+/* ============================================================================
+   CONSENT COMPONENT
+   Кнопка согласия на обработку ПД
+   ========================================================================= */
+
+.consent-footer {
+    padding: var(--space-7) 0 var(--space-10);
+    text-align: center;
+}
+
+.consent-link {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: var(--text-sub);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: var(--space-1) var(--space-3);
+}
+
+.consent-link:hover {
+    color: #0d9a7d;
+}

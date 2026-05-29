@@ -1,0 +1,259 @@
+/* ============================================
+   BOTTOM NAVIGATION
+   Fixed bottom navigation with FAB button
+   Layout defined here; colors in paymex-theme.css; SVG shape in BottomNav.tsx
+   ============================================ */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: min(100vw, var(--layout-content-max));
+    z-index: 10;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+/* Ensure navigation stays centered on all screen sizes */
+@media (min-width: 481px) {
+    .bottom-nav {
+        max-width: var(--layout-content-max);
+    }
+}
+
+.bottom-nav__shell {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    height: var(--bn-height);
+    pointer-events: auto;
+    overflow: visible;
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+}
+
+.bottom-nav__curve {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: var(--bn-height);
+}
+
+/* ============================================
+   FAB BUTTON (CENTER QR BUTTON)
+   ============================================ */
+
+.bottom-nav__fab {
+    position: absolute;
+    left: 50%;
+    top: var(--bn-fab-edge-y);
+    z-index: 4;
+    width: var(--bn-fab-size);
+    height: var(--bn-fab-size);
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-nav__fab .nav-fab-bubble {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+}
+
+/* ============================================
+   NAVIGATION ROW (NAV ITEMS CONTAINER)
+   ============================================ */
+
+.bottom-nav__row {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 0 6px 4px;
+    transform: translateY(-2px);
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.bottom-nav__row .nav-item,
+.bottom-nav__row .nav-item--fab-spacer {
+    pointer-events: auto;
+}
+
+/* ============================================
+   NAVIGATION ITEMS
+   ============================================ */
+
+.bottom-nav .nav-item {
+    flex: 1;
+    max-width: 76px;
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 44px;
+    padding: 2px 2px 1px;
+    gap: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-nav .nav-item .nav-icon {
+    width: var(--bn-nav-icon-size);
+    height: var(--bn-nav-icon-size);
+    max-width: var(--bn-nav-icon-size);
+    max-height: var(--bn-nav-icon-size);
+    stroke-width: var(--bn-nav-icon-stroke);
+    opacity: 1;
+}
+
+.nav-item {
+    flex: 1;
+    max-width: 90px;
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--layout-hit-target);
+    padding: var(--space-2) var(--space-2);
+    gap: var(--space-1);
+    color: #ffffff;
+}
+
+.nav-icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    color: currentColor;
+    display: block;
+    max-width: 26px;
+    max-height: 26px;
+    overflow: visible;
+}
+
+.nav-label {
+    font-size: var(--text-xs);
+    line-height: var(--line-height-tight);
+    letter-spacing: 0.01em;
+    text-align: center;
+    max-width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    word-break: break-word;
+}
+
+/* ============================================
+   ACTIVE STATE
+   ============================================ */
+
+.bottom-nav .nav-item.active {
+    color: #ffffff;
+}
+
+.bottom-nav .nav-item.active .nav-icon {
+    opacity: 1;
+    stroke-width: var(--bn-nav-icon-stroke);
+    filter: none;
+}
+
+.nav-item.active {
+    color: var(--nav-tab-active);
+}
+
+.nav-item.active .nav-icon {
+    filter: none;
+}
+
+/* ============================================
+   FAB SPACER (CENTER COLUMN)
+   Колонка под FAB: слот под круг + подпись на одной линии с остальными
+   ============================================ */
+
+.bottom-nav .nav-item--fab-spacer {
+    flex: 1;
+    max-width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 2px 0;
+    min-height: 46px;
+    pointer-events: none;
+}
+
+.bottom-nav .nav-fab-slot {
+    display: block;
+    width: var(--bn-fab-size);
+    height: var(--bn-nav-icon-size);
+    flex-shrink: 0;
+}
+
+.bottom-nav .nav-icon--qr {
+    width: var(--bn-nav-qr-icon-size);
+    height: var(--bn-nav-qr-icon-size);
+    max-width: var(--bn-nav-qr-icon-size);
+    max-height: var(--bn-nav-qr-icon-size);
+    stroke-width: var(--bn-nav-icon-stroke);
+}
+
+.bottom-nav .nav-item--fab-spacer .nav-label--fab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-top: var(--bn-label-offset);
+    padding: 0;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    max-width: 68px;
+    overflow: visible;
+}
+
+.bottom-nav .nav-label--fab .nav-label-line {
+    display: block;
+    white-space: nowrap;
+}
+
+.bottom-nav .nav-label {
+    font-size: 10px;
+    line-height: 1.15;
+    font-weight: 500;
+}
+
+/* ============================================
+   ICON ADJUSTMENTS
+   ============================================ */
+
+/* Иконка консьержа: выравнивание по оптической высоте с соседними пунктами нижнего меню */
+.nav-icon.nav-icon--concierge {
+    transform: translateY(2px);
+}
